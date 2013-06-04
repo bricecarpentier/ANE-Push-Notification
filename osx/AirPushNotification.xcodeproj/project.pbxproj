@@ -1,0 +1,343 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D0CDC66D175D42AC00D5EF7F /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0CDC66C175D42AC00D5EF7F /* Cocoa.framework */; };
+		D0CDC677175D42AC00D5EF7F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D0CDC675175D42AC00D5EF7F /* InfoPlist.strings */; };
+		D0CDC67B175D42AC00D5EF7F /* AirPushNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = D0CDC67A175D42AC00D5EF7F /* AirPushNotification.m */; };
+		D0D821D3175E41CB001A5282 /* Adobe AIR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0D821D2175E41CB001A5282 /* Adobe AIR.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		D0CDC669175D42AC00D5EF7F /* AirPushNotification.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AirPushNotification.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D0CDC66C175D42AC00D5EF7F /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		D0CDC66F175D42AC00D5EF7F /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		D0CDC670175D42AC00D5EF7F /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		D0CDC671175D42AC00D5EF7F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		D0CDC674175D42AC00D5EF7F /* AirPushNotification-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AirPushNotification-Info.plist"; sourceTree = "<group>"; };
+		D0CDC676175D42AC00D5EF7F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D0CDC678175D42AC00D5EF7F /* AirPushNotification-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AirPushNotification-Prefix.pch"; sourceTree = "<group>"; };
+		D0CDC679175D42AC00D5EF7F /* AirPushNotification.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AirPushNotification.h; sourceTree = "<group>"; };
+		D0CDC67A175D42AC00D5EF7F /* AirPushNotification.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AirPushNotification.m; sourceTree = "<group>"; };
+		D0CDC682175D42AD00D5EF7F /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		D0D821D2175E41CB001A5282 /* Adobe AIR.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "Adobe AIR.framework"; path = "../../../../../../Applications/Adobe Flash Builder 4.7/eclipse/plugins/com.adobe.flash.compiler_4.7.0.349722/AIRSDK/runtimes/air/mac/Adobe AIR.framework"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D0CDC665175D42AC00D5EF7F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D0CDC66D175D42AC00D5EF7F /* Cocoa.framework in Frameworks */,
+				D0D821D3175E41CB001A5282 /* Adobe AIR.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D0CDC65F175D42AC00D5EF7F = {
+			isa = PBXGroup;
+			children = (
+				D0CDC672175D42AC00D5EF7F /* AirPushNotification */,
+				D0CDC66B175D42AC00D5EF7F /* Frameworks */,
+				D0CDC66A175D42AC00D5EF7F /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D0CDC66A175D42AC00D5EF7F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D0CDC669175D42AC00D5EF7F /* AirPushNotification.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D0CDC66B175D42AC00D5EF7F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D0D821D2175E41CB001A5282 /* Adobe AIR.framework */,
+				D0CDC66C175D42AC00D5EF7F /* Cocoa.framework */,
+				D0CDC682175D42AD00D5EF7F /* SenTestingKit.framework */,
+				D0CDC66E175D42AC00D5EF7F /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D0CDC66E175D42AC00D5EF7F /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D0CDC66F175D42AC00D5EF7F /* AppKit.framework */,
+				D0CDC670175D42AC00D5EF7F /* CoreData.framework */,
+				D0CDC671175D42AC00D5EF7F /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		D0CDC672175D42AC00D5EF7F /* AirPushNotification */ = {
+			isa = PBXGroup;
+			children = (
+				D0CDC679175D42AC00D5EF7F /* AirPushNotification.h */,
+				D0CDC67A175D42AC00D5EF7F /* AirPushNotification.m */,
+				D0CDC673175D42AC00D5EF7F /* Supporting Files */,
+			);
+			path = AirPushNotification;
+			sourceTree = "<group>";
+		};
+		D0CDC673175D42AC00D5EF7F /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D0CDC674175D42AC00D5EF7F /* AirPushNotification-Info.plist */,
+				D0CDC675175D42AC00D5EF7F /* InfoPlist.strings */,
+				D0CDC678175D42AC00D5EF7F /* AirPushNotification-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		D0CDC666175D42AC00D5EF7F /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		D0CDC668175D42AC00D5EF7F /* AirPushNotification */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D0CDC693175D42AD00D5EF7F /* Build configuration list for PBXNativeTarget "AirPushNotification" */;
+			buildPhases = (
+				D0CDC664175D42AC00D5EF7F /* Sources */,
+				D0CDC665175D42AC00D5EF7F /* Frameworks */,
+				D0CDC666175D42AC00D5EF7F /* Headers */,
+				D0CDC667175D42AC00D5EF7F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AirPushNotification;
+			productName = AirPushNotification;
+			productReference = D0CDC669175D42AC00D5EF7F /* AirPushNotification.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D0CDC660175D42AC00D5EF7F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0460;
+				ORGANIZATIONNAME = "Fresh Planet";
+			};
+			buildConfigurationList = D0CDC663175D42AC00D5EF7F /* Build configuration list for PBXProject "AirPushNotification" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = D0CDC65F175D42AC00D5EF7F;
+			productRefGroup = D0CDC66A175D42AC00D5EF7F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D0CDC668175D42AC00D5EF7F /* AirPushNotification */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D0CDC667175D42AC00D5EF7F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D0CDC677175D42AC00D5EF7F /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D0CDC664175D42AC00D5EF7F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D0CDC67B175D42AC00D5EF7F /* AirPushNotification.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		D0CDC675175D42AC00D5EF7F /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D0CDC676175D42AC00D5EF7F /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		D0CDC691175D42AD00D5EF7F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_SEARCH_PATHS = (
+					"/Applications/Adobe\\ Flash\\ Builder\\ 4.7/eclipse/plugins/com.adobe.flash.compiler_4.7.0.349722/AIRSDK/runtimes/air/mac",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = (
+					"-flat_namespace",
+					"-weakFramework",
+				);
+				SDKROOT = macosx10.7;
+				VALID_ARCHS = "i386 x86_64";
+				WRAPPER_EXTENSION = framework;
+			};
+			name = Debug;
+		};
+		D0CDC692175D42AD00D5EF7F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_SEARCH_PATHS = (
+					"/Applications/Adobe\\ Flash\\ Builder\\ 4.7/eclipse/plugins/com.adobe.flash.compiler_4.7.0.349722/AIRSDK/runtimes/air/mac",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				OTHER_LDFLAGS = (
+					"-flat_namespace",
+					"-weakFramework",
+				);
+				SDKROOT = macosx10.7;
+				VALID_ARCHS = "i386 x86_64";
+				WRAPPER_EXTENSION = framework;
+			};
+			name = Release;
+		};
+		D0CDC694175D42AD00D5EF7F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				COMBINE_HIDPI_IMAGES = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SYSTEM_APPS_DIR)/Adobe Flash Builder 4.7/sdks/4.6.0/runtimes/air/mac\"",
+					"\"$(SYSTEM_APPS_DIR)/Adobe Flash Builder 4.7/eclipse/plugins/com.adobe.flash.compiler_4.7.0.349722/AIRSDK/runtimes/air/mac\"",
+				);
+				FRAMEWORK_VERSION = A;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "AirPushNotification/AirPushNotification-Prefix.pch";
+				INFOPLIST_FILE = "AirPushNotification/AirPushNotification-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx10.7;
+				WRAPPER_EXTENSION = framework;
+			};
+			name = Debug;
+		};
+		D0CDC695175D42AD00D5EF7F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				COMBINE_HIDPI_IMAGES = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SYSTEM_APPS_DIR)/Adobe Flash Builder 4.7/sdks/4.6.0/runtimes/air/mac\"",
+					"\"$(SYSTEM_APPS_DIR)/Adobe Flash Builder 4.7/eclipse/plugins/com.adobe.flash.compiler_4.7.0.349722/AIRSDK/runtimes/air/mac\"",
+				);
+				FRAMEWORK_VERSION = A;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "AirPushNotification/AirPushNotification-Prefix.pch";
+				INFOPLIST_FILE = "AirPushNotification/AirPushNotification-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx10.7;
+				WRAPPER_EXTENSION = framework;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D0CDC663175D42AC00D5EF7F /* Build configuration list for PBXProject "AirPushNotification" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D0CDC691175D42AD00D5EF7F /* Debug */,
+				D0CDC692175D42AD00D5EF7F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D0CDC693175D42AD00D5EF7F /* Build configuration list for PBXNativeTarget "AirPushNotification" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D0CDC694175D42AD00D5EF7F /* Debug */,
+				D0CDC695175D42AD00D5EF7F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D0CDC660175D42AC00D5EF7F /* Project object */;
+}
