@@ -22,13 +22,13 @@ import java.net.URL;
 
 import org.json.JSONObject;
 import org.json.JSONTokener;
-
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.ViewGroup;
@@ -45,11 +45,7 @@ public class C2DMBroadcastReceiver extends BroadcastReceiver {
 	private static String TAG = "c2dmBdcastRcvr";
 
 	private static int notificationIcon;
-	private static int customLayout;
-	private static int customLayoutTitle;
-	private static int customLayoutDescription;
-	private static int customLayoutImageContainer;
-	private static int customLayoutImage;
+	private static int applicationIcon;
 	
 	private static C2DMBroadcastReceiver instance;
 	
@@ -118,11 +114,7 @@ public class C2DMBroadcastReceiver extends BroadcastReceiver {
 	public static void registerResources(Context context)
 	{
 		notificationIcon = Resources.getResourseIdByName(context.getPackageName(), "drawable", "icon_status");
-		customLayout = Resources.getResourseIdByName(context.getPackageName(), "layout", "notification");
-		customLayoutTitle = Resources.getResourseIdByName(context.getPackageName(), "id", "title");
-		customLayoutDescription = Resources.getResourseIdByName(context.getPackageName(), "id", "text");
-		customLayoutImageContainer = Resources.getResourseIdByName(context.getPackageName(), "id", "image");
-		customLayoutImage = Resources.getResourseIdByName(context.getPackageName(), "drawable", "app_icon");
+		applicationIcon = Resources.getResourseIdByName(context.getPackageName(), "drawable", "app_icon");
 	}
 	
 	
@@ -134,8 +126,7 @@ public class C2DMBroadcastReceiver extends BroadcastReceiver {
 	public void handleMessage(Context context, Intent intent) {
 		try {
 			registerResources(context);
-			extractColors(context);
-			
+			Log.d(TAG, "GOT HERE 1");
 			FREContext ctxt = C2DMExtension.context;
 			
 			NotificationManager nm = (NotificationManager) context
@@ -146,8 +137,9 @@ public class C2DMBroadcastReceiver extends BroadcastReceiver {
 			// @see http://developer.android.com/guide/practices/ui_guidelines/icon_design_status_bar.html
 			
 			int icon = notificationIcon;
+			int appIcon = applicationIcon;
 			long when = System.currentTimeMillis();
-
+Log.d(TAG, "GOT HERE 2");
 			
 			// json string
 
@@ -168,7 +160,7 @@ public class C2DMBroadcastReceiver extends BroadcastReceiver {
 			{
 				facebookId = object.getString("facebookId");
 			}
-			
+			Log.d(TAG, "GOT HERE 3");
 			CharSequence tickerText = intent.getStringExtra("tickerText");
 			CharSequence contentTitle = intent.getStringExtra("contentTitle");
 			CharSequence contentText = intent.getStringExtra("contentText");
@@ -180,42 +172,21 @@ public class C2DMBroadcastReceiver extends BroadcastReceiver {
 			PendingIntent contentIntent = PendingIntent.getActivity(context, 0,
 					notificationIntent, 0);
 
-			Notification notification = new Notification(icon, tickerText, when);
-			notification.flags |= Notification.FLAG_AUTO_CANCEL;
-			notification.setLatestEventInfo(context, contentTitle, contentText,
-					contentIntent);
+			//Log.d(TAG, contentTitle);
+			//Log.d(TAG, contentText);
+			Notification notification = new Notification.Builder(context)
+				.setSmallIcon(notificationIcon)
+				.setLargeIcon(BitmapFactory.decodeResource(context.getResources(), appIcon))
+				.setContentTitle(contentTitle)
+				.setContentText(contentText)
+				.setTicker(tickerText)
+				.setContentIntent(contentIntent)
+				.build();
+			
+			nm.notify(NotifId, notification);
 
-			
-			RemoteViews contentView = new RemoteViews(context.getPackageName(), customLayout);
-			
-			
-			
-			contentView.setTextViewText(customLayoutTitle, contentTitle);
-			contentView.setTextViewText(customLayoutDescription, contentText);
-
-			contentView.setTextColor(customLayoutTitle, notification_text_color);
-			contentView.setFloat(customLayoutTitle, "setTextSize", notification_title_size_factor*notification_text_size);
-			contentView.setTextColor(customLayoutDescription, notification_text_color);
-			contentView.setFloat(customLayoutDescription, "setTextSize", notification_description_size_factor*notification_text_size);
-
-			
-			if (facebookId != null)
-			{		
-				Log.d(TAG, "bitmap not null");
-				CreateNotificationTask cNT = new CreateNotificationTask();
-				cNT.setParams(customLayoutImageContainer, NotifId, nm, notification, contentView);
-				String src = "http://graph.facebook.com/"+facebookId+"/picture?type=normal";
-				URL url = new URL(src);
-				cNT.execute(url);
-			} else
-			{
-				Log.d(TAG, "bitmap null");
-				contentView.setImageViewResource(customLayoutImageContainer, customLayoutImage);
-				notification.contentView = contentView;
-				nm.notify(NotifId, notification);
-			}
 			NotifId++;
-			
+			Log.d(TAG, "GOT HERE 5");
 			if (ctxt != null)
 			{
 				parameters = parameters == null ? "" : parameters;
@@ -225,60 +196,6 @@ public class C2DMBroadcastReceiver extends BroadcastReceiver {
 		} catch (Exception e) {
 			Log.e(TAG, "Error activating application:", e);
 		}
-	}
-	
-	
-	
-	private static Integer notification_text_color = null;
-	private static float notification_text_size;
-	private static float notification_title_size_factor = (float) 1.0;
-	private static float notification_description_size_factor = (float) 0.8;
-	private static final String COLOR_SEARCH_RECURSE_TIP = "SOME_SAMPLE_TEXT";
-
-	private boolean recurseGroup(Context context, ViewGroup gp)
-	{
-	    final int count = gp.getChildCount();
-	    for (int i = 0; i < count; ++i)
-	    {
-	        if (gp.getChildAt(i) instanceof TextView)
-	        {
-	            final TextView text = (TextView) gp.getChildAt(i);
-	            final String szText = text.getText().toString();
-	            if (COLOR_SEARCH_RECURSE_TIP.equals(szText))
-	            {
-	                notification_text_color = text.getTextColors().getDefaultColor();
-	                notification_text_size = text.getTextSize();
-	                DisplayMetrics metrics = new DisplayMetrics();
-	                WindowManager systemWM = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
-	                systemWM.getDefaultDisplay().getMetrics(metrics);
-	                notification_text_size /= metrics.scaledDensity;
-	                return true;
-	            }
-	        }
-	        else if (gp.getChildAt(i) instanceof ViewGroup)
-	            return recurseGroup((Context) context, (ViewGroup) gp.getChildAt(i));
-	    }
-	    return false;
-	}
-
-	private void extractColors(Context context)
-	{
-	    if (notification_text_color != null)
-	        return;
-
-	    try
-	    {
-	        Notification ntf = new Notification();
-	        ntf.setLatestEventInfo(context, COLOR_SEARCH_RECURSE_TIP, "Utest", null);
-	        LinearLayout group = new LinearLayout(context);
-	        ViewGroup event = (ViewGroup) ntf.contentView.apply(context, group);
-	        recurseGroup(context, event);
-	        group.removeAllViews();
-	    }
-	    catch (Exception e)
-	    {
-	        notification_text_color = android.R.color.black;
-	    }
 	}
 	
 }
