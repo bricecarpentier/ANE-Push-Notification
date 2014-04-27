@@ -18,6 +18,8 @@
 
 package com.freshplanet.nativeExtensions;
 
+import java.io.InputStream;
+import java.net.HttpURLConnection;
 import java.net.URL;
 
 import org.json.JSONObject;
@@ -28,7 +30,9 @@ import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.ViewGroup;
@@ -172,20 +176,23 @@ public class C2DMBroadcastReceiver extends BroadcastReceiver {
 			PendingIntent contentIntent = PendingIntent.getActivity(context, 0,
 					notificationIntent, 0);
 
+			
+
+			if (facebookId != null) {
+				Log.d(TAG, "facebookId not null");
+		        new RetrieveFacebookProfilePictureTask().execute(context, new Integer(notificationIcon), facebookId, contentTitle, contentText, tickerText, contentIntent, this);
+			} else {
+				Log.d(TAG, "facebookId null");
+				Bitmap myBitmap = BitmapFactory.decodeResource(context.getResources(), appIcon);
+				sendNotification(context, notificationIcon, myBitmap, contentTitle, contentText, tickerText, contentIntent);
+			}
+
+
 			//Log.d(TAG, contentTitle);
 			//Log.d(TAG, contentText);
-			Notification notification = new Notification.Builder(context)
-				.setSmallIcon(notificationIcon)
-				.setLargeIcon(BitmapFactory.decodeResource(context.getResources(), appIcon))
-				.setContentTitle(contentTitle)
-				.setContentText(contentText)
-				.setTicker(tickerText)
-				.setContentIntent(contentIntent)
-				.build();
-			
-			nm.notify(NotifId, notification);
 
-			NotifId++;
+
+
 //			Log.d(TAG, "GOT HERE 5");
 			if (ctxt != null)
 			{
@@ -196,6 +203,86 @@ public class C2DMBroadcastReceiver extends BroadcastReceiver {
 		} catch (Exception e) {
 			Log.e(TAG, "Error activating application:", e);
 		}
+	}
+
+	public void sendNotification(Context context, int smallIcon, Bitmap largeIcon, CharSequence contentTitle, CharSequence contentText, CharSequence tickerText, PendingIntent contentIntent) {
+		if (largeIcon == null) {
+			Log.d(TAG, "largeIcon is null");
+		}
+
+		Notification notification = new Notification.Builder(context)
+			.setSmallIcon(smallIcon)
+			.setLargeIcon(largeIcon)
+			.setContentTitle(contentTitle)
+			.setContentText(contentText)
+			.setTicker(tickerText)
+			.setContentIntent(contentIntent)
+			.build();
+
+		NotifId++;
+
+		NotificationManager nm = (NotificationManager) context
+				.getSystemService(Context.NOTIFICATION_SERVICE);
+		nm.notify(NotifId, notification);
+	}
+
+	class RetrieveFacebookProfilePictureTask extends AsyncTask<Object, Void, Bitmap>
+	{
+
+		private Exception exception;
+		private Context context;
+		private Integer smallIcon;
+		private String facebookId;
+		private CharSequence contentTitle;
+		private CharSequence contentText;
+		private CharSequence tickerText;
+		private PendingIntent contentIntent;
+		private C2DMBroadcastReceiver receiver;
+
+		@Override
+		protected Bitmap doInBackground(Object... params) {
+			this.context = (Context) params[0];
+			this.smallIcon = (Integer) params[1];
+			this.facebookId = (String) params[2];
+			this.contentTitle = (CharSequence) params[3];
+			this.contentText = (CharSequence) params[4];
+			this.tickerText = (CharSequence) params[5];
+			this.contentIntent = (PendingIntent) params[6];
+			this.receiver = (C2DMBroadcastReceiver) params[7];
+
+			try {
+				// String src = "http://graph.facebook.com/"+this.facebookId+"/picture";
+				
+				// URL url = new URL(src);
+		  //       HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+		  //       connection.setDoInput(true);
+		  //       connection.connect();
+		  //       InputStream input = connection.getInputStream();
+				String src = "https://graph.facebook.com/"+this.facebookId+"/picture?type=large";
+				Log.d(TAG, "src: " + src);
+				Bitmap b = BitmapFactory.decodeStream((new URL(src)).openConnection().getInputStream());
+		        //Bitmap b = BitmapFactory.decodeStream(input);
+		        if (b == null) {
+		        	Log.d(TAG, "b is null");
+		        }
+		        return b;
+		    } catch (Exception e) {
+		    	Log.d(TAG, "nope! chuck testa!");
+		    	this.exception = e;
+		    	return null;
+		    }
+		}
+
+		@Override
+		protected void onPostExecute(Bitmap b) {
+			if (this.exception != null) {
+				Log.e(TAG, "Error retrieving profile picture:", this.exception);
+			} else {
+				Log.d(TAG, "sending notification after retrieving profile picture");
+				this.receiver.sendNotification(this.context, this.smallIcon.intValue(), b, this.contentTitle, this.contentText, this.tickerText, this.contentIntent);
+			}
+		}
+
 	}
 	
 }
