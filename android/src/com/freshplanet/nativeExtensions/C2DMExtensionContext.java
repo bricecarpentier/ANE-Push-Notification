@@ -32,12 +32,12 @@ public class C2DMExtensionContext extends FREContext {
 	private static String TAG = "c2dmContext";
 	
 	public C2DMExtensionContext() {
-		Log.d(TAG, "C2DMExtensionContext.C2DMExtensionContext");
+//		Log.d(TAG, "C2DMExtensionContext.C2DMExtensionContext");
 	}
 	
 	@Override
 	public void dispose() {
-		Log.d(TAG, "C2DMExtensionContext.dispose");
+//		Log.d(TAG, "C2DMExtensionContext.dispose");
 		C2DMExtension.context = null;
 	}
 
@@ -46,7 +46,7 @@ public class C2DMExtensionContext extends FREContext {
 	 */
 	@Override
 	public Map<String, FREFunction> getFunctions() {
-		Log.d(TAG, "C2DMExtensionContext.getFunctions");
+//		Log.d(TAG, "C2DMExtensionContext.getFunctions");
 		Map<String, FREFunction> functionMap = new HashMap<String, FREFunction>();
 		functionMap.put("registerPush", new C2DMRegisterFunction());
 		functionMap.put("setBadgeNb", new SetBadgeValueFunction());

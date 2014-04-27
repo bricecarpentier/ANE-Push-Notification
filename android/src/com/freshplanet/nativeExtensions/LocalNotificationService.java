@@ -92,10 +92,10 @@ public class LocalNotificationService extends Service {
 	public void handleMessage(Context context, Intent intent) {
 		try {
 			
-			Log.d("LocalNService", "registering resources");
+//			Log.d("LocalNService", "registering resources");
 			registerResources(context);
 			
-			Log.d("LocalNService", "extract colors");
+//			Log.d("LocalNService", "extract colors");
 			extractColors(context);
 			
 			FREContext ctxt = C2DMExtension.context;
@@ -103,7 +103,7 @@ public class LocalNotificationService extends Service {
 			NotificationManager nm = (NotificationManager) context
 					.getSystemService(Context.NOTIFICATION_SERVICE);
 
-			Log.d("LocalNService", "getting nm");
+//			Log.d("LocalNService", "getting nm");
 
 			// icon is required for notification.
 			// @see http://developer.android.com/guide/practices/ui_guidelines/icon_design_status_bar.html
@@ -113,7 +113,7 @@ public class LocalNotificationService extends Service {
 
 			
 			// json string
-			Log.d("LocalNService", "getting extra params");
+//			Log.d("LocalNService", "getting extra params");
 
 			String parameters = intent.getStringExtra("parameters");
 			String facebookId = null;
@@ -137,30 +137,30 @@ public class LocalNotificationService extends Service {
 			CharSequence contentTitle = intent.getStringExtra("contentTitle");
 			CharSequence contentText = intent.getStringExtra("contentText");
 					
-			Log.d("LocalNService", "creating intent");
+//			Log.d("LocalNService", "creating intent");
 
 			Intent notificationIntent = new Intent(context, 
 					Class.forName(context.getPackageName() + ".AppEntry"));
-			Log.d("LocalNService", "getting penging intent");
+//			Log.d("LocalNService", "getting penging intent");
 
 
 			PendingIntent contentIntent = PendingIntent.getActivity(context, 0,
 					notificationIntent, 0);
 
-			Log.d("LocalNService", "getting notif");
+//			Log.d("LocalNService", "getting notif");
 
 			Notification notification = new Notification(icon, tickerText, when);
 			notification.flags |= Notification.FLAG_AUTO_CANCEL;
 			notification.setLatestEventInfo(context, contentTitle, contentText,
 					contentIntent);
 
-			Log.d("LocalNService", "creating remove view");
+//			Log.d("LocalNService", "creating remove view");
 
 			RemoteViews contentView = new RemoteViews(context.getPackageName(), customLayout);
 			
 			if (facebookId != null)
 			{		
-				Log.d(TAG, "bitmap not null");
+//				Log.d(TAG, "bitmap not null");
 				String src = "http://graph.facebook.com/"+facebookId+"/picture";
 				URL url = new URL(src);
 		        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
@@ -171,7 +171,7 @@ public class LocalNotificationService extends Service {
 				contentView.setImageViewBitmap(customLayoutImageContainer, myBitmap);
 			} else
 			{
-				Log.d(TAG, "bitmap null");
+//				Log.d(TAG, "bitmap null");
 				contentView.setImageViewResource(customLayoutImageContainer, customLayoutImage);
 			}
 			
@@ -185,7 +185,7 @@ public class LocalNotificationService extends Service {
 			contentView.setFloat(customLayoutDescription, "setTextSize", notification_text_size);
 
 			notification.contentView = contentView;
-			Log.d("LocalNService", "notifying");
+//			Log.d("LocalNService", "notifying");
 
 			nm.notify(NotifId, notification);
 			NotifId++;

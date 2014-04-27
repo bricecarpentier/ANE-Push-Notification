@@ -19,7 +19,7 @@ public class LocalBroadcastReceiver extends BroadcastReceiver {
 			return; // display the notification only when in background
 		}
 		
-		Log.d(TAG, "receive local notification");
+		//Log.d(TAG, "receive local notification");
 
 		Bundle bundle = intent.getExtras();
 		String title = bundle.getString("contentTitle");

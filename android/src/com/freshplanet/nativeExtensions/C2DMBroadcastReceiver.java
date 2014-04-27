@@ -90,18 +90,18 @@ public class C2DMBroadcastReceiver extends BroadcastReceiver {
 
 		if (intent.getStringExtra("error") != null) {
 			String error = intent.getStringExtra("error");
-			Log.d(TAG, "Registration failed with error: " + error);
+//			Log.d(TAG, "Registration failed with error: " + error);
 			if (freContext != null) {
 				freContext.dispatchStatusEventAsync("TOKEN_FAIL", error);
 			}
 		} else if (intent.getStringExtra("unregistered") != null) {
-			Log.d(TAG, "Unregistered successfully");
+//			Log.d(TAG, "Unregistered successfully");
 			if (freContext != null) {
 				freContext.dispatchStatusEventAsync("UNREGISTERED",
 						"unregistered");
 			}
 		} else if (registration != null) {
-			Log.d(TAG, "Registered successfully");
+//			Log.d(TAG, "Registered successfully");
 			if (freContext != null) {
 				freContext.dispatchStatusEventAsync("TOKEN_SUCCESS", registration);
 			}
@@ -126,7 +126,7 @@ public class C2DMBroadcastReceiver extends BroadcastReceiver {
 	public void handleMessage(Context context, Intent intent) {
 		try {
 			registerResources(context);
-			Log.d(TAG, "GOT HERE 1");
+//			Log.d(TAG, "GOT HERE 1");
 			FREContext ctxt = C2DMExtension.context;
 			
 			NotificationManager nm = (NotificationManager) context
@@ -139,7 +139,7 @@ public class C2DMBroadcastReceiver extends BroadcastReceiver {
 			int icon = notificationIcon;
 			int appIcon = applicationIcon;
 			long when = System.currentTimeMillis();
-Log.d(TAG, "GOT HERE 2");
+//Log.d(TAG, "GOT HERE 2");
 			
 			// json string
 
@@ -160,7 +160,7 @@ Log.d(TAG, "GOT HERE 2");
 			{
 				facebookId = object.getString("facebookId");
 			}
-			Log.d(TAG, "GOT HERE 3");
+//			Log.d(TAG, "GOT HERE 3");
 			CharSequence tickerText = intent.getStringExtra("tickerText");
 			CharSequence contentTitle = intent.getStringExtra("contentTitle");
 			CharSequence contentText = intent.getStringExtra("contentText");
@@ -186,7 +186,7 @@ Log.d(TAG, "GOT HERE 2");
 			nm.notify(NotifId, notification);
 
 			NotifId++;
-			Log.d(TAG, "GOT HERE 5");
+//			Log.d(TAG, "GOT HERE 5");
 			if (ctxt != null)
 			{
 				parameters = parameters == null ? "" : parameters;
